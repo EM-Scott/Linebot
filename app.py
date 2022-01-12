@@ -106,42 +106,42 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
   
 
-import requests
-from bs4 import BeautifulSoup
-@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    message = event.message.text
-    if re.match("守望傳說",message):
-    url = 'https://www.guardiantales.com/coupon/redeem/'
-    UsersID = ['77889456','9872396876']
-    GRCodes = ['HAPPYNEWYEAR','FRESHSTART']
-
-    for i in UsersID:
-        for j in GRCodes:
-            class bcolors:
-                OK= '\033[92m' #GREEN
-                WARNING= '\033[93m' #YELLOW
-                FAIL= '\033[91m' #RED
-                RESET= '\033[0m' #RESET COLOR
-            
-            payload=('region=SEA&' + 'userId=' + i +'&code=' + j )
-            headers = {
-                'content-type': "application/x-www-form-urlencoded",
-            }
-            response = requests.request("POST", url, data=payload, headers=headers) # 送出資訊
-            soup = BeautifulSoup(response.text,"html.parser")
-            sel = soup.find('p').text #抓回顯示值
-            if sel == "Congratulations!You've successfully claimed the Coupon!Please check your mail in-game in order to redeem your rewards.":
-                line_bot_api.reply_message(event.reply_token,TextSendMessage(bcolors.OK + '成功。 ' + bcolors.RESET + i + "：" + '兌換' + j))
-            elif sel == 'We were unable to find your User Number.Please double-check your User Number and the Region selected and try again.' :
-                line_bot_api.reply_message(event.reply_token,TextSendMessage(bcolors.FAIL + ' 失敗。 ' + bcolors.RESET + '原因：UserID Error' +' (' + i + '_兌換_' + j + ')'))
-            elif sel == "The Coupon Code you've entered is invalid.Please check the Coupon Code and try again.":
-                line_bot_api.reply_message(event.reply_token,TextSendMessage(bcolors.FAIL + ' 失敗。 ' + bcolors.RESET + '原因：序號錯誤' +' (' + i + '_兌換_' + j + ')'))
-            elif sel == "The Coupon Code you've entered has already been claimed.If you have not yet redeemed this Coupon Code, please double-check your User Number and the Region selected and try again." :
-                line_bot_api.reply_message(event.reply_token,TextSendMessage(bcolors.FAIL + ' 失敗。 ' + bcolors.RESET + '原因：序號已兌換' +' (' + i + '_兌換_' + j + ')'))
-            elif sel == "The Coupon Code you've entered has already expired." :    
-                line_bot_api.reply_message(event.reply_token,TextSendMessage(bcolors.FAIL + ' 失敗。 ' + bcolors.RESET + '原因：序號過期' +' (' + i + '_兌換_' + j + ')'))
-        
+#import requests
+#from bs4 import BeautifulSoup
+#@handler.add(MessageEvent, message=TextMessage)
+#def handle_message(event):
+#    message = event.message.text
+#    if re.match("守望傳說",message):
+#    url = 'https://www.guardiantales.com/coupon/redeem/'
+#    UsersID = ['77889456','9872396876']
+#    GRCodes = ['HAPPYNEWYEAR','FRESHSTART']
+#
+#    for i in UsersID:
+#        for j in GRCodes:
+#            class bcolors:
+#                OK= '\033[92m' #GREEN
+#                WARNING= '\033[93m' #YELLOW
+#                FAIL= '\033[91m' #RED
+#                RESET= '\033[0m' #RESET COLOR
+#            
+#            payload=('region=SEA&' + 'userId=' + i +'&code=' + j )
+#            headers = {
+#                'content-type': "application/x-www-form-urlencoded",
+#            }
+#            response = requests.request("POST", url, data=payload, headers=headers) # 送出資訊
+#            soup = BeautifulSoup(response.text,"html.parser")
+#            sel = soup.find('p').text #抓回顯示值
+#            if sel == "Congratulations!You've successfully claimed the Coupon!Please check your mail in-game in order to redeem your rewards.":
+#                line_bot_api.reply_message(event.reply_token,TextSendMessage(bcolors.OK + '成功。 ' + bcolors.RESET + i + "：" + '兌換' + j))
+#            elif sel == 'We were unable to find your User Number.Please double-check your User Number and the Region selected and try again.' :
+#                line_bot_api.reply_message(event.reply_token,TextSendMessage(bcolors.FAIL + ' 失敗。 ' + bcolors.RESET + '原因：UserID Error' +' (' + i + '_兌換_' + j + ')'))
+#            elif sel == "The Coupon Code you've entered is invalid.Please check the Coupon Code and try again.":
+#                line_bot_api.reply_message(event.reply_token,TextSendMessage(bcolors.FAIL + ' 失敗。 ' + bcolors.RESET + '原因：序號錯誤' +' (' + i + '_兌換_' + j + ')'))
+#            elif sel == "The Coupon Code you've entered has already been claimed.If you have not yet redeemed this Coupon Code, please double-check your User Number and the Region selected and try again." :
+#                line_bot_api.reply_message(event.reply_token,TextSendMessage(bcolors.FAIL + ' 失敗。 ' + bcolors.RESET + '原因：序號已兌換' +' (' + i + '_兌換_' + j + ')'))
+#            elif sel == "The Coupon Code you've entered has already expired." :    
+#                line_bot_api.reply_message(event.reply_token,TextSendMessage(bcolors.FAIL + ' 失敗。 ' + bcolors.RESET + '原因：序號過期' +' (' + i + '_兌換_' + j + ')'))
+#        
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
