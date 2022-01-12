@@ -93,8 +93,15 @@ import re
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = event.message.text
-    if re.match("三點一刻",message):
+    if re.match("台鐵時刻",message):
         line_bot_api.reply_message(event.reply_token,TextSendMessage("https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip112/gobytime"))
+    elif re.match("三點一刻",message):
+        line_bot_api.reply_message(event.reply_token,TextSendMessage("https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip112/gobytime"))
+    elif re.match("GG88",message):
+        line_bot_api.reply_message(event.reply_token,TextSendMessage("巴拉八八八"))
+    elif re.match("你是誰",message):
+        line_bot_api.reply_message(event.reply_token,TextSendMessage("才不告訴逆雷"))
+        
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
         
