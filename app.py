@@ -89,7 +89,6 @@ def welcome(event):
     
     
 import re
-
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = event.message.text
@@ -97,7 +96,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage("你自己去看 https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip112/gobytime"))
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
-        
+
+import re
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = event.message.text
@@ -105,7 +105,8 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,TextSendMessage("不告訴逆哩勒勒勒"))
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
-
+        
+import re
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = event.message.text
