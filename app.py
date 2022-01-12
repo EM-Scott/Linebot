@@ -106,6 +106,23 @@ def handle_message(event):
     else:
         line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
 
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    if event.message.text == '本周新片':
+        r = requests.get('http://www.atmovies.com.tw/movie/new/')
+        r.encoding = 'utf-8'
+
+        soup = BeautifulSoup(r.text, 'lxml')
+        content = []
+        for i, data in enumerate(soup.select('div.filmTitle a')):
+            if i > 20:
+                break
+            content.append(data.text + '\n' + 'http://www.atmovies.com.tw' + data['href'])
+
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='\n\n'.join(content))
+        )
 
         
         
