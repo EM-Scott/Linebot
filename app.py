@@ -111,7 +111,10 @@ def handle_message(event):
     # get user id when reply
     user_id = event.source.user_id
     print("user_id =", user_id)
-    line_bot_api.reply_message(event.reply_token,TextSendMessage(user_id))
+    
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=event.message.text))
 
 #import requests
 #from bs4 import BeautifulSoup
