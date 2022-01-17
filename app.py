@@ -121,7 +121,7 @@ def handle_sticker_message(event):
     )
 
 import re
-if re.match("教學", msg):
+if re.match("教學"):
         line_bot_api.push_message(uid, TextSendMessage('給您參考:https://github.com/ChenTsungYu/stock_linebot_public/blob/master/app.py'))
         
 import os
