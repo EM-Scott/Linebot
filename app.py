@@ -76,6 +76,7 @@ def handle_message(event):
     elif '功能列表' in msg:
         message = function_list()
         line_bot_api.reply_message(event.reply_token, message)
+        
     else:
         message = TextSendMessage(text=msg)
         line_bot_api.reply_message(event.reply_token, message)
@@ -110,6 +111,9 @@ def handle_message(event):
         words = txt
         save = False
         reply = '我會好好保護這個祕密喔～'
+    elif '牛牛' in txt:
+        reply = '牛牛啊咪波‘
+    
     else:
         reply = txt #學你說話
 
