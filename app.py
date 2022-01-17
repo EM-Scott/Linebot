@@ -70,6 +70,8 @@ def handle_message(event):
     _name = profile.display_name
     print("大頭貼：", profile.picture_url)
     print("狀態消息：", profile.status_message)
+    print("匿名：", profile.display_name)
+    print("使用者ID：", profile.user_id)
 
     txt=event.message.text
 
