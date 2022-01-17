@@ -8,6 +8,8 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
+import re
+
 
 #======這裡是呼叫的檔案內容=====
 from message import *
@@ -28,6 +30,8 @@ line_bot_api = LineBotApi('lPkuq0new8upb+bh5muA9vU9w/BNy5+QQhk7r3cFxqdL9wcv6n2ue
 # Channel Secret
 handler = WebhookHandler('e8a1992d6f0fa55a5509d6f7145835b0')
 line_bot_api.push_message('U13827e14d459bb54ca2e0357703e920e', TextSendMessage(text='機器人運行開始'))
+my_user_id = 'Your UserID'
+line_bot_api.push_message(my_user_id, TextSendMessage(text="start"))
 
 words = ''
 save = False
@@ -48,6 +52,7 @@ def callback():
         abort(400)
     return 'OK'
 
+#======回應內容======
 
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
@@ -120,7 +125,6 @@ def handle_sticker_message(event):
             sticker_id=event.message.sticker_id)
     )
 
-import re
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = event.message.text
