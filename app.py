@@ -112,7 +112,7 @@ def handle_message(event):
         save = False
         reply = '我會好好保護這個祕密喔～'
     elif '牛牛' in txt:
-        reply = '牛牛啊咪波‘
+        reply = '牛牛啊咪波'
     
     else:
         reply = txt #學你說話
