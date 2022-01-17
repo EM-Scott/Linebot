@@ -109,7 +109,6 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
     else 'Youtube:' in txt:
         reply = '此功能開發中'
-        
     msg = TextSendMessage(reply)
     line_bot_api.reply_message(event.reply_token, msg)
     
