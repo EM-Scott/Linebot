@@ -1,23 +1,13 @@
-from datetime import datetime
 from flask import Flask, request, abort
-from linebot import LineBotApi, WebhookHandler
-from linebot.exceptions import InvalidSignatureError
-from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
-    StickerMessage, StickerSendMessage,
-    ConfirmTemplate, TemplateSendMessage,
-    MessageAction, URIAction, LocationMessage,
-    ButtonsTemplate,
-    FollowEvent
-)
-app = Flask(__name__)
-static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
-# Channel Access Token
-line_bot_api = LineBotApi('lPkuq0new8upb+bh5muA9vU9w/BNy5+QQhk7r3cFxqdL9wcv6n2ue1/jxzWPiCBXSvo0agpYhE4X55liDKoAz6yxoOFxwL/FCUtjEX3TQz+IFDzwuWNmYFxpSgaVenl3Qn4lwPVM7n7FL79qK5DagAdB04t89/1O/w1cDnyilFU=')
-# Channel Secret
-handler = WebhookHandler('e8a1992d6f0fa55a5509d6f7145835b0')
 
-line_bot_api.push_message('U13827e14d459bb54ca2e0357703e920e', TextSendMessage(text='你可以開始了'))
+from linebot import (
+    LineBotApi, WebhookHandler
+)
+from linebot.exceptions import (
+    InvalidSignatureError
+)
+from linebot.models import *
+
 
 #======這裡是呼叫的檔案內容=====
 from message import *
@@ -30,6 +20,15 @@ import tempfile, os
 import datetime
 import time
 #======python的函數庫==========
+
+app = Flask(__name__)
+static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
+# Channel Access Token
+line_bot_api = LineBotApi('lPkuq0new8upb+bh5muA9vU9w/BNy5+QQhk7r3cFxqdL9wcv6n2ue1/jxzWPiCBXSvo0agpYhE4X55liDKoAz6yxoOFxwL/FCUtjEX3TQz+IFDzwuWNmYFxpSgaVenl3Qn4lwPVM7n7FL79qK5DagAdB04t89/1O/w1cDnyilFU=')
+# Channel Secret
+handler = WebhookHandler('e8a1992d6f0fa55a5509d6f7145835b0')
+line_bot_api.push_message('U13827e14d459bb54ca2e0357703e920e', TextSendMessage(text='你可以開始了'))
+
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
