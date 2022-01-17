@@ -42,22 +42,14 @@ def default(event):
 def handle_message(event):
     txt=event.message.text
     reply_txt = TextSendMessage(text=txt)
-    reply_stk = StickerSendMessage(
-        package_id=3,
-        sticker_id=233 )
-    line_bot_api.reply_message(
-        event.reply_token, 
-        [reply_txt, reply_stk]
-    )
+    reply_stk = StickerSendMessage(package_id=3,sticker_id=233 )
+    line_bot_api.reply_message(event.reply_token,[reply_txt, reply_stk])
 
 @handler.add(MessageEvent, message=StickerMessage)
 def handle_sticker_message(event):
     pid = event.message.package_id
     sid = event.message.sticker_id
-    line_bot_api.reply_message(
-        event.reply_token,
-        StickerSendMessage(package_id=pid, sticker_id=sid)
-    )
+    line_bot_api.reply_message(event.reply_token,StickerSendMessage(package_id=pid, sticker_id=sid))
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=80)
