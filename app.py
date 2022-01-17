@@ -30,8 +30,8 @@ line_bot_api = LineBotApi('lPkuq0new8upb+bh5muA9vU9w/BNy5+QQhk7r3cFxqdL9wcv6n2ue
 # Channel Secret
 handler = WebhookHandler('e8a1992d6f0fa55a5509d6f7145835b0')
 line_bot_api.push_message('U13827e14d459bb54ca2e0357703e920e', TextSendMessage(text='機器人運行開始'))
-my_user_id = 'Your UserID'
-line_bot_api.push_message(my_user_id, TextSendMessage(text="start"))
+my_user_id = 'U13827e14d459bb54ca2e0357703e920e'
+line_bot_api.push_message(my_user_id, TextSendMessage(text='start'))
 
 words = ''
 save = False
