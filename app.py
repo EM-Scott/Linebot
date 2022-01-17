@@ -111,7 +111,7 @@ def handle_message(event):
         reply = '此功能開發中'
     
     else:
-        reply = txt #學你說話
+        
 
     msg = TextSendMessage(reply)
     line_bot_api.reply_message(event.reply_token, msg)
