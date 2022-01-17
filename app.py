@@ -55,7 +55,7 @@ def callback():
 #======回應內容======
 
 # 處理訊息
-@handler.add(MessageEvent, message=TextMessage)
+#@handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
     if '最新合作廠商' in msg:
@@ -116,7 +116,7 @@ def handle_message(event):
     msg = TextSendMessage(reply)
     line_bot_api.reply_message(event.reply_token, msg)
 
-@handler.add(MessageEvent, message=StickerMessage)
+#@handler.add(MessageEvent, message=StickerMessage)
 def handle_sticker_message(event):
     line_bot_api.reply_message(
         event.reply_token,
@@ -125,7 +125,7 @@ def handle_sticker_message(event):
             sticker_id=event.message.sticker_id)
     )
 
-@handler.add(MessageEvent, message=TextMessage)
+#@handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = event.message.text
     if re.match("教學",message):
