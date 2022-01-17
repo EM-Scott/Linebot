@@ -29,6 +29,9 @@ line_bot_api = LineBotApi('lPkuq0new8upb+bh5muA9vU9w/BNy5+QQhk7r3cFxqdL9wcv6n2ue
 handler = WebhookHandler('e8a1992d6f0fa55a5509d6f7145835b0')
 line_bot_api.push_message('U13827e14d459bb54ca2e0357703e920e', TextSendMessage(text='機器人運行開始'))
 
+words = ''
+save = False
+
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -78,24 +81,45 @@ def handle_message(event):
     
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    global words
+    global save
+
+    _id = event.source.user_id
+    profile = line_bot_api.get_profile(_id) 
+    
+    _name = profile.display_name
+    print("大頭貼：", profile.picture_url)
+    print("狀態消息：", profile.status_message)
+
     txt=event.message.text
-    reply_txt = TextSendMessage(text=txt)
-    reply_stk = StickerSendMessage(
-        package_id=3,
-        sticker_id=233 )
-    line_bot_api.reply_message(
-        event.reply_token, 
-        [reply_txt, reply_stk]
-    )
+
+    if (txt=='Hi') or (txt=="你好"):
+        reply = f'{_name}你好！'
+    elif '悄悄話' in txt:
+        if words != '':
+            reply = f'你的悄悄話是：\n\n{words}'
+        else:
+            reply = '放膽說出心裡的話吧～'
+            save = True
+    elif save:
+        words = txt
+        save = False
+        reply = '我會好好保護這個祕密喔～'
+    else:
+        reply = txt #學你說話
+
+    msg = TextSendMessage(reply)
+    line_bot_api.reply_message(event.reply_token, msg)
 
 @handler.add(MessageEvent, message=StickerMessage)
 def handle_sticker_message(event):
-    pid = event.message.package_id
-    sid = event.message.sticker_id
     line_bot_api.reply_message(
         event.reply_token,
-        StickerSendMessage(package_id=pid, sticker_id=sid)
+        StickerSendMessage(
+            package_id=event.message.package_id,
+            sticker_id=event.message.sticker_id)
     )
+
         
 import os
 if __name__ == "__main__":
