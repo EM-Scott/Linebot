@@ -55,32 +55,6 @@ def callback():
 #======回應內容======
 
 # 處理訊息
-#@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    msg = event.message.text
-    if '最新合作廠商' in msg:
-        message = imagemap_message()
-        line_bot_api.reply_message(event.reply_token, message)
-    elif '最新活動訊息' in msg:
-        message = buttons_message()
-        line_bot_api.reply_message(event.reply_token, message)
-    elif '註冊會員' in msg:
-        message = Confirm_Template()
-        line_bot_api.reply_message(event.reply_token, message)
-    elif '旋轉木馬' in msg:
-        message = Carousel_Template()
-        line_bot_api.reply_message(event.reply_token, message)
-    elif '圖片畫廊' in msg:
-        message = test()
-        line_bot_api.reply_message(event.reply_token, message)
-    elif '功能列表' in msg:
-        message = function_list()
-        line_bot_api.reply_message(event.reply_token, message)
-        
-    else:
-        message = TextSendMessage(text=msg)
-        line_bot_api.reply_message(event.reply_token, message)
-
 @handler.add(PostbackEvent)
 def handle_message(event):
     print(event.postback.data)    
@@ -113,14 +87,35 @@ def handle_message(event):
         reply = '我會好好保護這個祕密喔～'
     elif '牛牛' in txt:
         reply = '牛牛啊咪波'
+    elif '教學' in txt:
+        reply = '給您參考:https://github.com/ChenTsungYu/stock_linebot_public/blob/master/app.py'
+    elif '最新合作廠商' in txt:
+        message = imagemap_message()
+        line_bot_api.reply_message(event.reply_token, message)
+    elif '最新活動訊息' in txt:
+        message = buttons_message()
+        line_bot_api.reply_message(event.reply_token, message)
+    elif '註冊會員' in txt:
+        message = Confirm_Template()
+        line_bot_api.reply_message(event.reply_token, message)
+    elif '旋轉木馬' in txt:
+        message = Carousel_Template()
+        line_bot_api.reply_message(event.reply_token, message)
+    elif '圖片畫廊' in txt:
+        message = test()
+        line_bot_api.reply_message(event.reply_token, message)
+    elif '功能列表' in txt:
+        message = function_list()
+        line_bot_api.reply_message(event.reply_token, message)
     
     else:
         reply = txt #學你說話
 
     msg = TextSendMessage(reply)
     line_bot_api.reply_message(event.reply_token, msg)
+    
 
-#@handler.add(MessageEvent, message=StickerMessage)
+@handler.add(MessageEvent, message=StickerMessage)
 def handle_sticker_message(event):
     line_bot_api.reply_message(
         event.reply_token,
@@ -129,13 +124,6 @@ def handle_sticker_message(event):
             sticker_id=event.message.sticker_id)
     )
 
-#@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    message = event.message.text
-    if re.match("教學",message):
-        line_bot_api.reply_message(event.reply_token,TextSendMessage("給您參考:https://github.com/ChenTsungYu/stock_linebot_public/blob/master/app.py"))
-    else:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
         
 import os
 if __name__ == "__main__":
