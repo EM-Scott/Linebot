@@ -120,6 +120,9 @@ def handle_sticker_message(event):
             sticker_id=event.message.sticker_id)
     )
 
+import ir
+if re.match("教學", msg):
+        line_bot_api.push_message(uid, TextSendMessage('給您參考:https://github.com/ChenTsungYu/stock_linebot_public/blob/master/app.py'))
         
 import os
 if __name__ == "__main__":
