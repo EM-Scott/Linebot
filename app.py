@@ -1,4 +1,5 @@
 from flask import Flask, request, abort
+
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -7,25 +8,28 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
-import re
-
 
 #======這裡是呼叫的檔案內容=====
 from message import *
 from new import *
 from Function import *
 #======這裡是呼叫的檔案內容=====
+
 #======python的函數庫==========
 import tempfile, os
 import datetime
 import time
 #======python的函數庫==========
+
 app = Flask(__name__)
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 # Channel Access Token
 line_bot_api = LineBotApi('lPkuq0new8upb+bh5muA9vU9w/BNy5+QQhk7r3cFxqdL9wcv6n2ue1/jxzWPiCBXSvo0agpYhE4X55liDKoAz6yxoOFxwL/FCUtjEX3TQz+IFDzwuWNmYFxpSgaVenl3Qn4lwPVM7n7FL79qK5DagAdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
 handler = WebhookHandler('e8a1992d6f0fa55a5509d6f7145835b0')
+line_bot_api.push_message('U13827e14d459bb54ca2e0357703e920e', TextSendMessage(text='你可以開始了'))
+
+
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -40,6 +44,8 @@ def callback():
     except InvalidSignatureError:
         abort(400)
     return 'OK'
+
+
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -65,9 +71,12 @@ def handle_message(event):
     else:
         message = TextSendMessage(text=msg)
         line_bot_api.reply_message(event.reply_token, message)
+
 @handler.add(PostbackEvent)
 def handle_message(event):
     print(event.postback.data)
+
+
 @handler.add(MemberJoinedEvent)
 def welcome(event):
     uid = event.joined.members[0].user_id
@@ -76,16 +85,6 @@ def welcome(event):
     name = profile.display_name
     message = TextSendMessage(text=f'{name}歡迎加入')
     line_bot_api.reply_message(event.reply_token, message)
-    
-    
-import re
-@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    message = event.message.text
-    if re.match("你是誰",message):
-        line_bot_api.reply_message(event.reply_token,TextSendMessage("才不告訴你勒~~"))
-    else:
-        line_bot_api.reply_message(event.reply_token,TextSendMessage(message))
         
         
 import os
