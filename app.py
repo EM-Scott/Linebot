@@ -121,6 +121,7 @@ def handle_sticker_message(event):
     )
 
 import re
+@handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message = event.message.text
     if re.match("教學",message):
