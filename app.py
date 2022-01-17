@@ -107,6 +107,8 @@ def handle_message(event):
     elif '功能列表' in txt:
         message = function_list()
         line_bot_api.reply_message(event.reply_token, message)
+    elif 'Youtube:' in txt:
+        reply = '此功能開發中'
     
     else:
         reply = txt #學你說話
