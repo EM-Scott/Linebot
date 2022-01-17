@@ -29,10 +29,8 @@ static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 line_bot_api = LineBotApi('lPkuq0new8upb+bh5muA9vU9w/BNy5+QQhk7r3cFxqdL9wcv6n2ue1/jxzWPiCBXSvo0agpYhE4X55liDKoAz6yxoOFxwL/FCUtjEX3TQz+IFDzwuWNmYFxpSgaVenl3Qn4lwPVM7n7FL79qK5DagAdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
 handler = WebhookHandler('e8a1992d6f0fa55a5509d6f7145835b0')
-line_bot_api.push_message('U13827e14d459bb54ca2e0357703e920e', TextSendMessage(text='機器人運行開始'))
 my_user_id = 'U13827e14d459bb54ca2e0357703e920e'
-line_bot_api.push_message(my_user_id, TextSendMessage(text='start'))
-line_bot_api.push_message(U13827e14d459bb54ca2e0357703e920e, TextSendMessage(text='機器人重啟完成'))
+line_bot_api.push_message(my_user_id, TextSendMessage(text='機器人運行開始'))
 
 words = ''
 save = False
