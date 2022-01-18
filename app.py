@@ -110,6 +110,23 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
     elif 'Youtube:' in txt:
         reply = '此功能開發中'
+    elif '守望傳說' in txt:
+        message = GuRedeem()
+            if UID != '':
+                reply = f'您的UID是：\n\n{UID}'
+            else:
+                reply = '您的UID是：？'
+                save = True
+                if SN != '':
+                    reply = f'兌換的序號為：\n\n{SN}'
+                else:
+                    reply = '您要兌換的序號是：？'
+                    save = True        
+    elif save:
+        UID = txt
+        save = False
+        reply = '兌換中'
+
    
     msg = TextSendMessage(reply)
     line_bot_api.reply_message(event.reply_token, msg)
