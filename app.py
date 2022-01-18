@@ -61,8 +61,10 @@ def handle_message(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     global words
+    global UID
+    global SN
     global save
-
+    
     _id = event.source.user_id
     profile = line_bot_api.get_profile(_id) 
     
@@ -121,7 +123,7 @@ def handle_message(event):
                     reply = f'兌換的序號為：\n\n{SN}'
                 else:
                     reply = '您要兌換的序號是：？'
-                    save = True        
+                    save = True
     elif save:
         UID = txt
         save = False
