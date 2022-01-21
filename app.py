@@ -76,7 +76,7 @@ def handle_message(event):
 
     txt = event.message.text
 
-    elif '牛牛' in txt:
+    if '牛牛' in txt:
         reply = '牛牛啊咪波'
     elif '教學' in txt:
         reply = '給您參考:https://github.com/ChenTsungYu/stock_linebot_public/blob/master/app.py'
