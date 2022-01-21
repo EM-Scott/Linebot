@@ -1,4 +1,4 @@
-from collections import UserDict
+rom collections import UserDict
 from flask import Flask, request, abort
 
 from linebot import LineBotApi, WebhookHandler
@@ -31,7 +31,7 @@ handler = WebhookHandler('e8a1992d6f0fa55a5509d6f7145835b0')
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 
 # 建立憑證
-cr = sac.from_json_keyfile_name('D:\Python\Learn\Python 教材\F9796\ch07\model\google_auth.json', scope)  # 請自行修改檔名
+cr = sac.from_json_keyfile_name('google_auth.json', scope)  # 請自行修改檔名
 gs = gspread.authorize(cr)
 my_user_id = 'U13827e14d459bb54ca2e0357703e920e'
 line_bot_api.push_message(my_user_id, TextSendMessage(text='機器人運行開始'))
