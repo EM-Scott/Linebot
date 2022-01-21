@@ -61,8 +61,6 @@ def handle_message(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     global words
-    global UID
-    global SN
     global save
     
     _id = event.source.user_id
