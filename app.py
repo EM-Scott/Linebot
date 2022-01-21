@@ -1,4 +1,4 @@
-rom collections import UserDict
+from collections import UserDict
 from flask import Flask, request, abort
 
 from linebot import LineBotApi, WebhookHandler
