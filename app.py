@@ -132,10 +132,6 @@ def callback():
 @handler.default()
 def default(event):
 
-@handler.add(PostbackEvent)
-def handle_message(event):
-    print(event.postback.data)    
-
 # 處理文字訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
