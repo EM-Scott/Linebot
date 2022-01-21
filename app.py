@@ -1,56 +1,34 @@
-from collections import UserDict
+from model import sheet
+from datetime import datetime
 from flask import Flask, request, abort
-
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
-from linebot.models import *
+from linebot.models import (
+    MessageEvent, TextMessage, TextSendMessage,
+    StickerMessage, StickerSendMessage,
+    ConfirmTemplate, TemplateSendMessage,
+    MessageAction, URIAction, LocationMessage,
+    ButtonsTemplate
+)
 
-import re
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials as sac
+gs = sheet.GoogleSheet('谷歌試算表','LINE線上報修')
 
-#======這裡是呼叫的檔案內容=====
-from message import *
-from new import *
-from Function import *
-#======這裡是呼叫的檔案內容=====
-
-#======python的函數庫==========
-import tempfile, os
-import datetime
-import time
-#======python的函數庫==========
-
-app = Flask(__name__)
-static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
-# Channel Access Token
 line_bot_api = LineBotApi('lPkuq0new8upb+bh5muA9vU9w/BNy5+QQhk7r3cFxqdL9wcv6n2ue1/jxzWPiCBXSvo0agpYhE4X55liDKoAz6yxoOFxwL/FCUtjEX3TQz+IFDzwuWNmYFxpSgaVenl3Qn4lwPVM7n7FL79qK5DagAdB04t89/1O/w1cDnyilFU=')
-# Channel Secret
 handler = WebhookHandler('e8a1992d6f0fa55a5509d6f7145835b0')
-#
-scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-
-# 建立憑證
-cr = sac.from_json_keyfile_name('google_auth.json', scope)  # 請自行修改檔名
-gs = gspread.authorize(cr)
-my_user_id = 'U13827e14d459bb54ca2e0357703e920e'
-line_bot_api.push_message(my_user_id, TextSendMessage(text='機器人運行開始'))
 
 users = {}
 
 def check_user(id, name):
     global users
 
-    if id not in users and users[id] is None:
-        users[id] = {    # 初始化此使用者物件
+    if id not in users:
+        users[id] = {
             'name':name,
-            'words':'',
+            'logs':{'日期時間':'', '經緯度':'', '地址':'', '事由':''},
             'save':False 
         }
-        print('新增一名用戶：', id)
-    else:
-        print('用戶已經存在，id：', id)
-        print('目前用戶數：', len(users))
+
+app = Flask(__name__)
 
 def reply_text(token, id, txt):
     global users
@@ -109,25 +87,22 @@ def reply_text(token, id, txt):
                         me['logs']['經緯度'], me['logs']['地址'], me['logs']['事由']]
             gs.append_row(logs)
 
+@app.route('/')
+def index():
+    return 'Welcome to Line Bot!'
 
-# 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
-    # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
-    # get request body as text
     body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
-    # handle webhook body
+
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
+
     return 'OK'
 
-#======回應內容======
-
-# 處理訊息
 @handler.default()
 def default(event):
     print('捕捉到事件：', event)
@@ -136,42 +111,17 @@ def default(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     _id = event.source.user_id
-    profile = line_bot_api.get_profile(_id) 
+    profile = line_bot_api.get_profile(_id)
+    # 紀錄用戶資料
     _name = profile.display_name
-    txt = event.message.text
-    print("大頭貼：", profile.picture_url)
-    print("狀態消息：", profile.status_message)
-    print("匿名：", profile.display_name)
-    print("使用者ID：", profile.user_id)
+    print('大頭貼網址：', profile.picture_url)
+    print('狀態消息：', profile.status_message)
     check_user(_id, _name)
 
-    # if '牛牛' in txt:
-    #     reply = '牛牛啊咪波'
-    # elif '教學' in txt:
-    #     reply = '給您參考:https://github.com/ChenTsungYu/stock_linebot_public/blob/master/app.py'
-    # elif '最新合作廠商' in txt:
-    #     message = imagemap_message()
-    #     line_bot_api.reply_message(event.reply_token, message)
-    # elif '最新活動訊息' in txt:
-    #     message = buttons_message()
-    #     line_bot_api.reply_message(event.reply_token, message)
-    # elif '註冊會員' in txt:
-    #     message = Confirm_Template()
-    #     line_bot_api.reply_message(event.reply_token, message)
-    # elif '旋轉木馬' in txt:
-    #     message = Carousel_Template()
-    #     line_bot_api.reply_message(event.reply_token, message)
-    # elif '圖片畫廊' in txt:
-    #     message = test()
-    #     line_bot_api.reply_message(event.reply_token, message)
-    # elif '功能列表' in txt:
-    #     message = function_list()
-    #     line_bot_api.reply_message(event.reply_token, message)
-    # elif 'Youtube:' in txt:
-    #     reply = '此功能開發中'
     txt=event.message.text
+
     reply_text(event.reply_token, _id, txt)
-    
+
 # 處理地點訊息
 @handler.add(MessageEvent, message=LocationMessage)
 def handle_location_message(event):
@@ -201,9 +151,7 @@ def handle_location_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=msg))
-        
-    
-    
+
 @handler.add(MessageEvent, message=StickerMessage)
 def handle_sticker_message(event):
     line_bot_api.reply_message(
@@ -213,8 +161,6 @@ def handle_sticker_message(event):
             sticker_id=event.message.sticker_id)
     )
 
-        
-import os
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(debug=True, host='0.0.0.0', port=80)
+    # app.run()
