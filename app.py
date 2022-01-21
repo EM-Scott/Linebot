@@ -39,20 +39,19 @@ words = ''
 save = False
 users = {}
 
-def check_user(id, name):
+def check_user(_id, name):
     global users
 
-    if id not in users and users[id] is None:
-        users[id] = {    # 初始化此使用者物件
+    if _id not in users and users[_id] is None:
+        users[_id] = {    # 初始化此使用者物件
             'name':name,
             'words':'',
             'save':False 
         }
-        print('新增一名用戶：', id)
+        print('新增一名用戶：', _id)
     else:
-        print('用戶已經存在，id：', id)
+        print('用戶已經存在，id：', _id)
         print('目前用戶數：', len(users))
-
 
 
 # 監聽所有來自 /callback 的 Post Request
