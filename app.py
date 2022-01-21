@@ -10,7 +10,6 @@ from linebot.exceptions import (
 from linebot.models import *
 
 import re
-from LineBot.word import SN, UID
 
 
 #======這裡是呼叫的檔案內容=====
