@@ -16,7 +16,7 @@ class GoogleSheet():
     oauth_file：憑證檔名
     '''
 
-    def __init__(self, wks_name, wks_title=None, oauth='oauth.json'):  # 請自行修改檔名
+    def __init__(self, wks_name=LineBotDATA, wks_title=工作表一, oauth='google_auth.json'):  # 請自行修改檔名
         scope = ['https://spreadsheets.google.com/feeds',
                  'https://www.googleapis.com/auth/drive']
 
