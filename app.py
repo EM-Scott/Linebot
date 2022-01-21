@@ -1,3 +1,4 @@
+from collections import UserDict
 from flask import Flask, request, abort
 
 from linebot import (
@@ -9,12 +10,14 @@ from linebot.exceptions import (
 from linebot.models import *
 
 import re
+from LineBot.word import SN, UID
 
 
 #======這裡是呼叫的檔案內容=====
 from message import *
 from new import *
 from Function import *
+from Guardiantales import *
 #======這裡是呼叫的檔案內容=====
 
 #======python的函數庫==========
@@ -32,8 +35,26 @@ handler = WebhookHandler('e8a1992d6f0fa55a5509d6f7145835b0')
 my_user_id = 'U13827e14d459bb54ca2e0357703e920e'
 line_bot_api.push_message(my_user_id, TextSendMessage(text='機器人運行開始'))
 
+
+
 words = ''
 save = False
+users = {}
+
+def check_user(id, name):
+    global users
+
+    if id not in users and users[id] is None:
+        users[id] = {    # 初始化此使用者物件
+            'name':name,
+            'words':'',
+            'save':False 
+        }
+        print('新增一名用戶：', id)
+    else:
+        print('用戶已經存在，id：', id)
+        print('目前用戶數：', len(users))
+
 
 
 # 監聽所有來自 /callback 的 Post Request
@@ -60,19 +81,18 @@ def handle_message(event):
     
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    global words
-    global save
-    
     _id = event.source.user_id
     profile = line_bot_api.get_profile(_id) 
-    
     _name = profile.display_name
+    txt = event.message.text
     print("大頭貼：", profile.picture_url)
     print("狀態消息：", profile.status_message)
     print("匿名：", profile.display_name)
     print("使用者ID：", profile.user_id)
+    check_user(_id, _name)
 
-    txt = event.message.text
+    
+
     if '牛牛' in txt:
         reply = '牛牛啊咪波'
     elif '教學' in txt:
@@ -97,10 +117,12 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
     elif 'Youtube:' in txt:
         reply = '此功能開發中'
-    
+
+
+   
     msg = TextSendMessage(reply)
     line_bot_api.reply_message(event.reply_token, msg)
-
+    reply_text(event.reply_token, _id, txt)
     
 
 @handler.add(MessageEvent, message=StickerMessage)
