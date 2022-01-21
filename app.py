@@ -130,13 +130,12 @@ def callback():
 
 # 處理訊息
 @handler.default()
-def default(event):
 
 # 處理文字訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     _id = event.source.user_id
-    profile = line_bot_api.get_profile(_id)
+    profile = line_bot_api.get_profile(_id) 
     _name = profile.display_name
     txt = event.message.text
     print("大頭貼：", profile.picture_url)
@@ -144,9 +143,6 @@ def handle_message(event):
     print("匿名：", profile.display_name)
     print("使用者ID：", profile.user_id)
     check_user(_id, _name)
-    msg = TextSendMessage(reply)
-    line_bot_api.reply_message(event.reply_token, msg)
-    reply_text(event.reply_token, _id, txt)
 
     # if '牛牛' in txt:
     #     reply = '牛牛啊咪波'
@@ -173,6 +169,12 @@ def handle_message(event):
     # elif 'Youtube:' in txt:
     #     reply = '此功能開發中'
 
+
+   
+    msg = TextSendMessage(reply)
+    line_bot_api.reply_message(event.reply_token, msg)
+    reply_text(event.reply_token, _id, txt)
+    
 # 處理地點訊息
 @handler.add(MessageEvent, message=LocationMessage)
 def handle_location_message(event):
