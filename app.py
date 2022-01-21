@@ -74,20 +74,8 @@ def handle_message(event):
     print("匿名：", profile.display_name)
     print("使用者ID：", profile.user_id)
 
-    txt=event.message.text
+    txt = event.message.text
 
-    if (txt=='Hi') or (txt=="你好"):
-        reply = f'{_name}你好！'
-    elif '悄悄話' in txt:
-        if words != '':
-            reply = f'你的悄悄話是：\n\n{words}'
-        else:
-            reply = '放膽說出心裡的話吧～'
-            save = True
-    elif save:
-        words = txt
-        save = False
-        reply = '我會好好保護這個祕密喔～'
     elif '牛牛' in txt:
         reply = '牛牛啊咪波'
     elif '教學' in txt:
