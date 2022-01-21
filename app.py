@@ -8,7 +8,6 @@ from linebot.models import *
 import re
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials as sac
-from model import sheet
 
 #======這裡是呼叫的檔案內容=====
 from message import *
