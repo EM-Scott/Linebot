@@ -169,11 +169,7 @@ def handle_message(event):
     #     line_bot_api.reply_message(event.reply_token, message)
     # elif 'Youtube:' in txt:
     #     reply = '此功能開發中'
-
-
-   
-    msg = TextSendMessage(reply)
-    line_bot_api.reply_message(event.reply_token, msg)
+    txt=event.message.text
     reply_text(event.reply_token, _id, txt)
     
 # 處理地點訊息
