@@ -75,7 +75,6 @@ def handle_message(event):
     print("使用者ID：", profile.user_id)
 
     txt = event.message.text
-
     if '牛牛' in txt:
         reply = '牛牛啊咪波'
     elif '教學' in txt:
