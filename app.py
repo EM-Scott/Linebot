@@ -129,6 +129,8 @@ def callback():
 
 # 處理訊息
 @handler.default()
+def default(event):
+    print('捕捉到事件：', event)
 
 # 處理文字訊息
 @handler.add(MessageEvent, message=TextMessage)
