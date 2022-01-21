@@ -10,6 +10,7 @@ from linebot.models import (
     MessageAction, URIAction, LocationMessage,
     ButtonsTemplate
 )
+import os
 
 gs = sheet.GoogleSheet('LineBotDATA','工作表1')
 
