@@ -51,7 +51,7 @@ def handle_message(event):
     uid = profile.user_id # 發訊者ID
 #================================ 
     # AnswerFile
-    if re.match("呱:[a-z]{3}", msg):
+    if re.match("呱:[A-Z]{3}", msg):
         sn = msg
         sn_name = taiwanlottery.getGG88(sn)
         line_bot_api.push_message(uid, TextSendMessage(sn_name))
