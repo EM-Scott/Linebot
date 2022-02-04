@@ -1,5 +1,5 @@
 import requests
-import beautifulsoup4
+from bs4 import BeautifulSoup
 
 
 def Guard():
