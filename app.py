@@ -58,6 +58,15 @@ def handle_message(event):
         print(sn)
         print(sn_name)
         return 0
+    elif re.match("UID:[0-9]", msg):
+        UIDD = msg
+        line_bot_api.push_message(uid, TextSendMessage('輸入兌換序號'))
+        SNN = msg
+        line_bot_api.push_message(uid, TextSendMessage(UIDD))
+        line_bot_api.push_message(uid, TextSendMessage(SNN))
+        print(UIDD)
+        print(SNN)
+        return 0
                                   
 #處理貼圖訊息
 @handler.add(MessageEvent, message=StickerMessage)
