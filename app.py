@@ -12,6 +12,7 @@ from linebot.models import (
     ButtonsTemplate
 )
 import os
+import re
 
 gs = sheet.GoogleSheet('LineBotDATA','工作表1')
 
