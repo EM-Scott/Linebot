@@ -10,8 +10,8 @@ from linebot.models import (
     ConfirmTemplate, TemplateSendMessage,
     MessageAction, URIAction, LocationMessage,
     ButtonsTemplate
-import taiwanlottery
 )
+import taiwanlottery
 import os
 import re
 
