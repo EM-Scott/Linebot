@@ -51,13 +51,24 @@ def handle_message(event):
     uid = profile.user_id # 發訊者ID
 #================================ 
     # AnswerFile
-    if re.match("你好", msg):
-        line_bot_api.push_message(uid, TextSendMessage(text='哭啊！'))
-        return 0
-    elif re.match("守望兌換", msg):
-        line_bot_api.push_message(uid, TextSendMessage(text='請輸入UID'))
-        line_bot_api.push_message(uid, TextSendMessage(text='請輸入SN'))
-        return 0
+    UIDD = ''
+    SNN = ''
+    save = False
+
+    if re.match("守望兌換", msg):
+        if UIDD !='':
+            line_bot_api.push_message(uid, TextSendMessage(text='f'你的UID是:\n\n{UIDD})
+        elif:
+            line_bot_api.push_message(uid, TextSendMessage(text='請輸入您的UID:')
+            save = True
+        elif save:
+            UIDD = msg
+            save = Flase
+            line_bot_api.push_message(uid, TextSendMessage(text='已儲存UID')
+        else:
+            line_bot_api.push_message(uid, TextSendMessage(text=msg)
+                                      
+                                      
 #處理貼圖訊息
 @handler.add(MessageEvent, message=StickerMessage)
 def handle_sticker_message(event):
