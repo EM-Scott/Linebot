@@ -69,6 +69,7 @@ def handle_message(event):
         return 0
     elif re.match("守望兌換", msg):
         resule = Guardiantales.Gurad()
+        print(resule) 
         line_bot_api.push_message(uid, TextSendMessage(resule))
         
                                   
