@@ -1,4 +1,4 @@
-def GG88(Code):
+def getGG88(sn):
          Code_list = {'HUN':'新台幣100元', 
          'TWO':'新台幣200元', 
          'THR':'新台幣300元',
@@ -20,6 +20,6 @@ def GG88(Code):
          'TOP':'頭獎',
         }
 
-        try: sn_name = Code_list[Code]
+        try: sn_name = Code_list[sn]
         except: return "沒有中獎喔～"
         return sn_name
