@@ -50,7 +50,7 @@ def handle_message(event):
 #================================ 
     # 問卷
     if re.match("你好", msg):
-        line_bot_api.push_message(uid, TextSendMessage(text:msg))
+        line_bot_api.push_message(uid, TextSendMessage(text=msg))
         return 0
 #處理貼圖訊息
 @handler.add(MessageEvent, message=StickerMessage)
