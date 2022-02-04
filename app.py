@@ -12,7 +12,7 @@ from linebot.models import (
     ButtonsTemplate
 )
 import taiwanlottery
-import Guardiantales
+from Guardiantales import Guard
 import os
 import re
 
