@@ -55,6 +55,8 @@ def handle_message(event):
         sn = msg
         sn_name = taiwanlottery.getGG88(sn)
         line_bot_api.push_message(uid, TextSendMessage(sn_name))
+        print(sn)
+        print(sn_name)
         return 0
                                   
 #處理貼圖訊息
