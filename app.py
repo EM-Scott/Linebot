@@ -57,7 +57,7 @@ def handle_message(event):
 
     if re.match("守望兌換", msg):
         if UIDD !='':
-            line_bot_api.push_message(uid, TextSendMessage(text=f'你的UID是:\n\n{UIDD})
+            line_bot_api.push_message(uid, TextSendMessage(text=f'你的UID是:\n\n{UIDD}))
         elif:
             line_bot_api.push_message(uid, TextSendMessage(text='請輸入您的UID:')
             save = True
