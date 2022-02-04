@@ -60,13 +60,18 @@ def handle_message(event):
         return 0
     elif re.match("UID:[0-9]", msg):
         UIDD = msg
-        line_bot_api.push_message(uid, TextSendMessage('輸入兌換序號'))
+        line_bot_api.push_message(uid, TextSendMessage('UID紀錄完成'))
+        return 0
+    elif re.match("SN:[0-9]", msg):
         SNN = msg
+        line_bot_api.push_message(uid, TextSendMessage('SN紀錄完成'))
+        return 0
+    elif re.match("守望兌換", msg):
+        line_bot_api.push_message(uid, TextSendMessage('兌換開始'))
         line_bot_api.push_message(uid, TextSendMessage(UIDD))
         line_bot_api.push_message(uid, TextSendMessage(SNN))
-        print(UIDD)
-        print(SNN)
         return 0
+        
                                   
 #處理貼圖訊息
 @handler.add(MessageEvent, message=StickerMessage)
