@@ -12,6 +12,7 @@ from linebot.models import (
     ButtonsTemplate
 )
 import taiwanlottery
+import Guardiantales
 import os
 import re
 
@@ -67,10 +68,8 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage('SN紀錄完成'))
         return 0
     elif re.match("守望兌換", msg):
-        line_bot_api.push_message(uid, TextSendMessage('兌換開始'))
-        line_bot_api.push_message(uid, TextSendMessage(UIDD))
-        line_bot_api.push_message(uid, TextSendMessage(SNN))
-        return 0
+        resule = Guardiantales.Gurad()
+        line_bot_api.push_message(uid, TextSendMessage(resule))
         
                                   
 #處理貼圖訊息
