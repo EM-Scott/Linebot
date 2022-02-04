@@ -1,4 +1,5 @@
-TaiwanLottery = {'HUN':'新台幣100元', 
+def GG88(Code):
+         Code_list = {'HUN':'新台幣100元', 
          'TWO':'新台幣200元', 
          'THR':'新台幣300元',
          'THR':'新台幣400元',
@@ -19,4 +20,6 @@ TaiwanLottery = {'HUN':'新台幣100元',
          'TOP':'頭獎',
         }
 
-ans = TaiwanLottery[msg]
+        try: sn_name = Code_list[Code]
+        except: return "沒有中獎喔～"
+        return sn_name
