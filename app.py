@@ -62,7 +62,7 @@ def handle_message(event):
         UIDD = msg
         line_bot_api.push_message(uid, TextSendMessage('UID紀錄完成'))
         return 0
-    elif re.match("SN:[0-9]", msg):
+    elif re.match("SN:[A-Z]", msg):
         SNN = msg
         line_bot_api.push_message(uid, TextSendMessage('SN紀錄完成'))
         return 0
