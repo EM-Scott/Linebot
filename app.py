@@ -54,7 +54,6 @@ def handle_message(event):
     UIDD = ''
     SNN = ''
     save = False
-
     if re.match("守望兌換", msg):
         if UIDD !='':
             line_bot_api.push_message(uid, TextSendMessage(text={UIDD}))
