@@ -19,6 +19,7 @@ def getGG88(sn):
         'THR':'新台幣1,700元',
         'THR':'新台幣1,800元',
         'TOP':'頭獎',
+        '呱:TOP':'瓜哩誒大頭～',
     }
 
     try: sn_name = Code_list[sn]
