@@ -68,7 +68,7 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage('SN紀錄完成'))
         return 0
     elif re.match("守望兌換", msg):
-        resule = Guardiantales.Gurad()
+        resule = Guardiantales.Guard()
         print(resule) 
         line_bot_api.push_message(uid, TextSendMessage(resule))
         
