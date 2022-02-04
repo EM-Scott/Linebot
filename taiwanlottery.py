@@ -19,4 +19,4 @@ TaiwanLottery = {'HUN':'新台幣100元',
          'TOP':'頭獎',
         }
 
-print(TaiwanLottery[msg])
+ans = TaiwanLottery[msg]
