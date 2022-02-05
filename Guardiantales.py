@@ -20,7 +20,7 @@ def guard(GRCodes):
 
             class state: #結果清單
                 state1 = ('成功。' + i + "：" + '兌換' + j)
-                state2 = ('失敗。原因：UserID Error')
+                state2 = ('UserID Error')
                 state3 = ('失敗。 ' + '原因：序號錯誤' + '\n(' + i + '_兌換_' + j + ')')
                 state4 = ('失敗。 ' + '原因：序號已兌換' + '\n(' + i + '_兌換_' + j + ')')
                 state5 = ('失敗。 ' + '原因：序號過期' + '\n(' + i + '_兌換_' + j + ')')
