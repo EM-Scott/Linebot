@@ -53,7 +53,7 @@ def handle_message(event):
 #================================ 
     # AnswerFile
     if re.match("呱:[A-Z]{3}", msg):
-        if uid ==U13827e14d459bb54ca2e0357703e920e:
+        if uid == 'U13827e14d459bb54ca2e0357703e920e':
             sn = msg[2:5]
             sn_name = taiwanlottery.getGG88(sn)
             line_bot_api.push_message(uid, TextSendMessage(sn_name))
