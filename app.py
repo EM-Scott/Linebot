@@ -62,7 +62,9 @@ def handle_message(event):
             print(uid)
             print(user_name)
         else:
-            line_bot_api.push_message(uid, TextSendMessage(user_name,'你無此使用權限'))
+            line_bot_api.push_message(uid, TextSendMessage(user_name + '你無此使用權限'))
+            print(uid)
+            print(user_name)
         return 0
     elif re.match("守望兌換:[A-Z]", msg):
         GRCodes = msg[5:]
