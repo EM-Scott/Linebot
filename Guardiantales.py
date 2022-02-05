@@ -3,7 +3,8 @@ from bs4 import BeautifulSoup
 
 def guard(GRCodes):
     url = 'https://www.guardiantales.com/coupon/redeem/'
-    UsersID = ['885827936452']
+    UsersID = ['89765498736423','5321654654']
+    eenndd = []
     
     for i in UsersID:
         for j in {GRCodes}:
@@ -34,4 +35,7 @@ def guard(GRCodes):
                 name = state.state4
             elif sel == "The Coupon Code you've entered has already expired." : 
                 name = state.state5
-            return name
+                
+            eenndd.append(name)
+
+    return eenndd
