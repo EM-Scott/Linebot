@@ -3,15 +3,10 @@ from bs4 import BeautifulSoup
 
 def guard(GRCodes):
     url = 'https://www.guardiantales.com/coupon/redeem/'
-    UsersID = ['89765498736423']
+    UsersID = ['885827936452']
     
     for i in UsersID:
         for j in {GRCodes}:
-            class bcolors: #顏色註記
-                OK= '\033[92m' #GREEN
-                WARNING= '\033[93m' #YELLOW
-                FAIL= '\033[91m' #RED
-                RESET= '\033[0m' #RESET COLOR
             #兌換開始    
             payload=('region=SEA&' + 'userId=' + i +'&code=' + j )
             headers = {
@@ -23,11 +18,11 @@ def guard(GRCodes):
             #print(sel)
 
             class state: #結果清單
-                state1 = (bcolors.OK + '成功。 ' + bcolors.RESET + i + "：" + '兌換' + j)
-                state2 = (bcolors.FAIL + ' 失敗。 ' + bcolors.RESET + '原因：UserID Error' +' (' + i + '_兌換_' + j + ')')            
-                state3 = (bcolors.FAIL + ' 失敗。 ' + bcolors.RESET + '原因：序號錯誤' +' (' + i + '_兌換_' + j + ')')            
-                state4 = (bcolors.FAIL + ' 失敗。 ' + bcolors.RESET + '原因：序號已兌換' +' (' + i + '_兌換_' + j + ')')            
-                state5 = (bcolors.FAIL + ' 失敗。 ' + bcolors.RESET + '原因：序號過期' +' (' + i + '_兌換_' + j + ')')
+                state1 = ('成功。 ' + i + "：" + '兌換' + j)
+                state2 = (' 失敗。 ' + '原因：UserID Error' +' (' + i + '_兌換_' + j + ')')            
+                state3 = (' 失敗。 ' + '原因：序號錯誤' +' (' + i + '_兌換_' + j + ')')            
+                state4 = (' 失敗。 ' + '原因：序號已兌換' +' (' + i + '_兌換_' + j + ')')            
+                state5 = (' 失敗。 ' + '原因：序號過期' +' (' + i + '_兌換_' + j + ')')
             #判斷兌換結果
             if sel == "Congratulations!You've successfully claimed the Coupon!Please check your mail in-game in order to redeem your rewards.":
                 name = state.state1
