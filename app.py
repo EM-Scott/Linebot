@@ -58,6 +58,8 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage(sn_name))
         print(sn)
         print(sn_name)
+        print(uid)
+        print(user_name)
         return 0
     elif re.match("守望兌換:[A-Z]", msg):
         GRCodes = msg[5:]
