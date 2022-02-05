@@ -62,7 +62,7 @@ def handle_message(event):
     elif re.match("守望兌換:[A-Z]", msg):
         GRCodes = msg[5:]
         print(GRCodes)
-        GRCode_name = Guardiantales.guard(GRCodes)
+        GRCode_name = guard(GRCodes)
         print(GRCode_name) 
         line_bot_api.push_message(uid, TextSendMessage(GRCode_name))
         
