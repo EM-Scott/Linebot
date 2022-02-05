@@ -59,18 +59,12 @@ def handle_message(event):
         print(sn)
         print(sn_name)
         return 0
-    elif re.match("UID:[0-9]", msg):
-        UIDD = msg
-        line_bot_api.push_message(uid, TextSendMessage('UID紀錄完成'))
-        return 0
-    elif re.match("SN:[A-Z]", msg):
-        SNN = msg
-        line_bot_api.push_message(uid, TextSendMessage('SN紀錄完成'))
-        return 0
-    elif re.match("守望兌換", msg):
-        resule = Guardiantales.Guard()
-        print(resule) 
-        line_bot_api.push_message(uid, TextSendMessage(resule))
+    elif re.match("守望兌換:[A-Z]", msg):
+        GRCodes = msg[5:]
+        print(GRCodes)
+        GRCode_name = Guardiantales.guard(GRCodes)
+        print(GRCode_name) 
+        line_bot_api.push_message(uid, TextSendMessage(GRCode_name))
         
                                   
 #處理貼圖訊息
