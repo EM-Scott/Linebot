@@ -70,10 +70,11 @@ def handle_message(event):
         if uid == 'U13827e14d459bb54ca2e0357703e920e':
             GRCodes = msg[5:]
             UsersID = ['32','98']
-            for i in UsersID:
-                for j in {GRCodes}:
-                    guard_name = guard(i,j)
-                    line_bot_api.push_message(uid, TextSendMessage(guard_name))
+            for i in {GRCodes}:
+                guard_name = []
+                for j in UsersID:
+                    guard_name.append(guard(j,i))
+            line_bot_api.push_message(uid, TextSendMessage(guard_name))
         else:
             line_bot_api.push_message(uid, TextSendMessage(user_name + '無使用權限'))
             print(uid,user_name)
