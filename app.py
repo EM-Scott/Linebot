@@ -36,6 +36,7 @@ def callback():
     
     try:
         handler.handle(body, signature)
+        
     except InvalidSignatureError:
         abort(400)
 
@@ -59,27 +60,24 @@ def handle_message(event):
             sn = msg[2:5]
             sn_name = taiwanlottery.getGG88(sn)
             line_bot_api.push_message(uid, TextSendMessage(sn_name))
-            print(sn)
-            print(sn_name)
-            print(uid)
-            print(user_name)
+            print(sn,sn_name,uid,user_name)
         else:
             line_bot_api.push_message(uid, TextSendMessage(user_name + '無使用權限'))
-            print(uid)
-            print(user_name)
+            print(uid,user_name)
         return 0
+    
     elif re.match("守望兌換:[A-Z]", msg):
         if uid == 'U13827e14d459bb54ca2e0357703e920e':
             GRCodes = msg[5:]
-            UsersID = ['89765498736423','321231321']
+            UsersID = ['32','98']
             for i in UsersID:
                 for j in {GRCodes}:
                     guard_name = guard(i,j)
                     line_bot_api.push_message(uid, TextSendMessage(guard_name))
         else:
             line_bot_api.push_message(uid, TextSendMessage(user_name + '無使用權限'))
-            print(uid)
-            print(user_name)
+            print(uid,user_name)
+        return 0
             
 #處理貼圖訊息
 @handler.add(MessageEvent, message=StickerMessage)
