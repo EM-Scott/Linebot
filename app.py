@@ -34,9 +34,6 @@ def callback():
     signature = request.headers['X-Line-Signature']
     body = request.get_data(as_text=True)
     
-    print(body)
-    GGGG = handler.handle(body, signature)
-    print(GGGG)
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
@@ -74,13 +71,10 @@ def handle_message(event):
     elif re.match("守望兌換:[A-Z]", msg):
         GRCodes = msg[5:]
         print(GRCodes)
-        #GRCode_name = guard(GRCodes)
-        #print(GRCode_name)
-        #line_bot_api.push_message(uid, TextSendMessage(text=GRCode_name))
         url = 'https://www.guardiantales.com/coupon/redeem/'
         UsersID = ['89765498736423','321231321']
         for i in UsersID:
-            for j in {GRCodes}:
+            for j in GRCodes:
                 #兌換開始    
                 payload=('region=SEA&' + 'userId=' + i +'&code=' + j )
                 headers = {
@@ -89,7 +83,6 @@ def handle_message(event):
                 response = requests.request("POST", url, data=payload, headers=headers) # 送出資訊
                 soup = BeautifulSoup(response.text,"html.parser")
                 sel = soup.find('p').text #抓回顯示值
-                #print(sel)
 
                 class state: #結果清單
                     state1 = ('成功。' + i + "：" + '兌換' + j)
