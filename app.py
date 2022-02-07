@@ -74,7 +74,7 @@ def handle_message(event):
                 guard_name = []
                 for j in UsersID:
                     guard_name.append(guard(j,i))
-            line_bot_api.push_message(uid, TextSendMessage(" ".join(guard_name)))
+            line_bot_api.push_message(uid, TextSendMessage("\n".join(guard_name)))
         else:
             line_bot_api.push_message(uid, TextSendMessage(user_name + '無使用權限'))
             print(uid,user_name)
