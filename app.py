@@ -73,8 +73,6 @@ def handle_message(event):
         print(GRCodes)
         GRCode_name = guard(GRCodes)
         print(GRCode_name)
-        GG88 = line_bot_api.push_message(uid, TextSendMessage(GRCode_name))
-        Print (GG88)
         line_bot_api.push_message(uid, TextSendMessage(GRCode_name))
         return 0
                                   
