@@ -37,6 +37,6 @@ def guard(GRCodes):
                 name = state.state5
                 
             #eenndd.append(name)
-            
+            return name
 
     #return eenndd
