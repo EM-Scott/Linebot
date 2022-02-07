@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-def test(A,B):
+def guard(A,B):
     url = 'https://www.guardiantales.com/coupon/redeem/'
     payload=('region=SEA&' + 'userId=' + A +'&code=' + B )
     headers = {
