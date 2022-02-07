@@ -74,7 +74,7 @@ def handle_message(event):
         url = 'https://www.guardiantales.com/coupon/redeem/'
         UsersID = ['89765498736423','321231321']
         for i in UsersID:
-            for j in GRCodes:
+            for j in {GRCodes}:
                 #兌換開始    
                 payload=('region=SEA&' + 'userId=' + i +'&code=' + j )
                 headers = {
