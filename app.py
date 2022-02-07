@@ -73,7 +73,7 @@ def handle_message(event):
             GRCodes = msg[5:]
             UsersID = ['89765498736423','321231321']
             for i in UsersID:
-                for j in GRCodes:
+                for j in {GRCodes}:
                     guard_name = guard(i,j)
                     line_bot_api.push_message(uid, TextSendMessage(guard_name))
         else:
