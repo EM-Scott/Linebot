@@ -82,8 +82,8 @@ def handle_message(event):
         #else :
             #line_bot_api.push_message(uid, TextSendMessage(user_name + '無使用權限'))
             #print(uid,user_name)
-        return 0
-            
+        #return 0
+                                      
 #處理貼圖訊息
 @handler.add(MessageEvent, message=StickerMessage)
 def handle_sticker_message(event):
