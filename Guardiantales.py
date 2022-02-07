@@ -35,7 +35,7 @@ def guard(GRCodes):
                 name = state.state4
             elif sel == "The Coupon Code you've entered has already expired." : 
                 name = state.state5
-                
+            line_bot_api.push_message(uid, TextSendMessage(text=name))    
             eenndd.append(name)
             #return name
 
