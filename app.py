@@ -15,6 +15,8 @@ import taiwanlottery
 from Guardiantales import guard
 import os
 import re
+import requests
+from bs4 import BeautifulSoup
 
 gs = sheet.GoogleSheet('LineBotDATA','工作表1')
 
