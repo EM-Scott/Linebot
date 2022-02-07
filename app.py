@@ -33,7 +33,8 @@ def callback():
     body = request.get_data(as_text=True)
     
     print(body)
-
+    GGGG = handler.handle(body, signature)
+    print(GGGG)
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
