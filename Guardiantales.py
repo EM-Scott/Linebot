@@ -12,11 +12,11 @@ def guard(A,B):
     sel = soup.find('p').text #抓回顯示值
 
     class state: #結果清單
-        state1 = ('成功。' + A + "：" + '兌換' + B)
-        state2 = ('失敗。' + '原因：UserAD Error' +' (' + A + '_兌換_' + B + ')')
-        state3 = ('失敗。' + '原因：序號錯誤' + '\n(' + A + '_兌換_' + B + ')')
-        state4 = ('失敗。' + '原因：序號已兌換' + '\n(' + A + '_兌換_' + B + ')')
-        state5 = ('失敗。' + '原因：序號過期' + '\n(' + A + '_兌換_' + B + ')')
+        state1 = ('成功。' + '序號:' + B)
+        state2 = ('失敗。' + '(UserAD Error) ' + '序號:' + B)
+        state3 = ('失敗。' + '(序號錯誤) ' + '序號:' + B)
+        state4 = ('失敗。' + '(序號已兌換) ' + '序號:' + B)
+        state5 = ('失敗。' + '(序號過期) ' + '序號:' + B)
     #判斷兌換結果
     if sel == "Congratulations!You've successfully claimed the Coupon!Please check your mail in-game in order to redeem your rewards.":
         name = state.state1
@@ -29,3 +29,33 @@ def guard(A,B):
     elif sel == "The Coupon Code you've entered has already expired." : 
         name = state.state5
     return name
+
+
+def check_name(Z):
+    class nick_name:#識別使用者ID
+        ID1 = '考特：'
+        ID2 = '球球：'
+        ID3 = '軒軒：'
+        ID4 = 'kawakil：'
+        ID5 = 'Yun：'
+        ID6 = '測試帳號：'
+        ID7 = '我測試一下：'
+        ID8 = '巴拉巴拉霸：'
+
+    if z == '885827936452':
+        n_name = nick_name.ID1
+    elif z == '733122961641':
+        n_name = nick_name.ID2
+    elif z == '477722973249':
+        n_name = nick_name.ID3
+    elif z == '615722923499':
+        n_name = nick_name.ID4
+    elif z == '989122951121':
+        n_name = nick_name.ID5
+    elif i == '885827936452':
+        n_name = nick_name.ID6
+    elif z == '32':
+        n_name = nick_name.ID7
+    elif z == '98':
+        n_name = nick_name.ID8
+    return n_name
