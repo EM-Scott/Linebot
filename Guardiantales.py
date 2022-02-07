@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 def guard(GRCodes):
     url = 'https://www.guardiantales.com/coupon/redeem/'
-    UsersID = ['89765498736423']
+    UsersID = ['89765498736423','321231321']
     eenndd = []
     
     for i in UsersID:
