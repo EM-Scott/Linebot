@@ -68,7 +68,7 @@ def handle_message(event):
     
     elif re.match("守望兌換:[A-Z]", msg):
         if uid == 'U13827e14d459bb54ca2e0357703e920e':
-            GRCodes = msg.split(",")[5:]
+            GRCodes = msg[5:].split(",")
             UsersID = ['32','98']
             guard_name = []
             for i in UsersID:
