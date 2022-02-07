@@ -68,12 +68,12 @@ def handle_message(event):
     
     elif re.match("守望兌換:[A-Z]", msg):
         if uid == 'U13827e14d459bb54ca2e0357703e920e':
-            GRCodes = msg[5:]
+            GRCodes = msg.split(",")[5:]
             UsersID = ['32','98']
-            for i in {GRCodes}:
-                guard_name = []
-                for j in UsersID:
-                    guard_name.append(guard(j,i))
+            guard_name = []
+            for i in UsersID:
+                for j in GRCodes:
+                    guard_name.append(guard(i,j))
             line_bot_api.push_message(uid, TextSendMessage("\n\n".join(guard_name)))
         else:
             line_bot_api.push_message(uid, TextSendMessage(user_name + '無使用權限'))
