@@ -93,7 +93,7 @@ def handle_message(event):
 
                 class state: #結果清單
                     state1 = ('成功。' + i + "：" + '兌換' + j)
-                    state2 = (' 敗。' + '原因：UserID Error' +' (' + i + '_兌換_' + j + ')')
+                    state2 = ('失敗。' + '原因：UserID Error' +' (' + i + '_兌換_' + j + ')')
                     state3 = ('失敗。' + '原因：序號錯誤' + '\n(' + i + '_兌換_' + j + ')')
                     state4 = ('失敗。' + '原因：序號已兌換' + '\n(' + i + '_兌換_' + j + ')')
                     state5 = ('失敗。' + '原因：序號過期' + '\n(' + i + '_兌換_' + j + ')')
@@ -110,10 +110,7 @@ def handle_message(event):
                     name = state.state5
                 line_bot_api.push_message(uid, TextSendMessage(text=name))    
                 #eenndd.append(name)
-                #return name
-
-        return 0
-                                  
+                #return name                                  
 #處理貼圖訊息
 @handler.add(MessageEvent, message=StickerMessage)
 def handle_sticker_message(event):
