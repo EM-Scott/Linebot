@@ -108,9 +108,8 @@ def handle_message(event):
                     name = state.state4
                 elif sel == "The Coupon Code you've entered has already expired." : 
                     name = state.state5
-                line_bot_api.push_message(uid, TextSendMessage(text=name))    
-                #eenndd.append(name)
-                #return name                                  
+            line_bot_api.push_message(uid, TextSendMessage(name))
+            
 #處理貼圖訊息
 @handler.add(MessageEvent, message=StickerMessage)
 def handle_sticker_message(event):
