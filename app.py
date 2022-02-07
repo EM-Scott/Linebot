@@ -13,6 +13,7 @@ from linebot.models import (
 )
 import taiwanlottery
 from Guardiantales import guard
+from Guardiantales import check_name
 import os
 import re
 import requests
@@ -67,14 +68,15 @@ def handle_message(event):
         return 0
     
     elif re.match("守望兌換:[A-Z]", msg):
-        if uid == 'U13827e14d459bb54ca2e0357703e920e':
+        if uid == 'U13827e14d459bb54ca2e0357703e920e' or 'U06e24ea18e919e92af56dcdd8eec0565':
             GRCodes = msg[5:].split(",")
             UsersID = ['32','98']
-            guard_name = []
+            guard_name = ['《兌換結果》']
             for i in UsersID:
+                guard_name.append(check_name(i))
                 for j in GRCodes:
                     guard_name.append(guard(i,j))
-            line_bot_api.push_message(uid, TextSendMessage("\n\n".join(guard_name)))
+            line_bot_api.push_message(uid, TextSendMessage("\n".join(guard_name) + "\n")
         else:
             line_bot_api.push_message(uid, TextSendMessage(user_name + '無使用權限'))
             print(uid,user_name)
