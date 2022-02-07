@@ -36,7 +36,6 @@ def guard(GRCodes):
             elif sel == "The Coupon Code you've entered has already expired." : 
                 name = state.state5
                 
-            #eenndd.append(name)
-            return name
+            eenndd.append(name)
 
-    #return eenndd
+    return eenndd
