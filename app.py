@@ -71,8 +71,8 @@ def handle_message(event):
         print(GRCodes)
         GRCode_name = guard(GRCodes)
         print(GRCode_name)
-        GRCodee_name = print(GRCode_name)
-        line_bot_api.push_message(uid, TextSendMessage(GRCodee_name))
+        line_bot_api.push_message(uid, TextSendMessage(GRCode_name))
+        Print(line_bot_api.push_message(uid, TextSendMessage(GRCode_name)))
         
                                   
 #處理貼圖訊息
