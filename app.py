@@ -94,33 +94,11 @@ def handle_message(event):
             #print(group_u)
             line_bot_api.push_message(uid, TextSendMessage(user_name + '您好'))
     elif re.match('quick_reply', msg):
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(
-                msg='Quick reply',
-                quick_reply=QuickReply(
-                    items=[
-                        QuickReplyButton(
-                            action=PostbackAction(label="label1", data="data1")
-                        ),
-                        QuickReplyButton(
-                            action=MessageAction(label="label2", text="text2")
-                        ),
-                        QuickReplyButton(
-                            action=DatetimePickerAction(label="label3",
-                                                        data="data3",
-                                                        mode="date")
-                        ),
-                        QuickReplyButton(
-                            action=CameraAction(label="label4")
-                        ),
-                        QuickReplyButton(
-                            action=CameraRollAction(label="label5")
-                        ),
-                        QuickReplyButton(
-                            action=LocationAction(label="label6")
-                        ),
-                    ])))
+        quick_reply = TextSendMessage(text='Hello, world',
+                                       quick_reply=QuickReply(items=[
+                                           QuickReplyButton(action=MessageAction(label="label", text="text"))
+                                       ]))
+        line_bot_api.push_message(uid, TextSendMessage(quick_reply))
 
             
                                        
