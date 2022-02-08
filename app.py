@@ -15,7 +15,7 @@ from linebot.models import (
 import taiwanlottery
 from Guardiantales import guard
 from Guardiantales import check_name
-form CP import calc
+from CP import calc
 import os
 import re
 import requests
