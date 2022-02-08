@@ -42,20 +42,20 @@ def check_name(Z):
         ID7 = '我測試一下：'
         ID8 = '巴拉巴拉霸：'
 
-    if z == '885827936452':
+    if Z == '885827936452':
         n_name = nick_name.ID1
-    elif z == '733122961641':
+    elif Z == '733122961641':
         n_name = nick_name.ID2
-    elif z == '477722973249':
+    elif Z == '477722973249':
         n_name = nick_name.ID3
-    elif z == '615722923499':
+    elif Z == '615722923499':
         n_name = nick_name.ID4
-    elif z == '989122951121':
+    elif Z == '989122951121':
         n_name = nick_name.ID5
-    elif i == '885827936452':
+    elif Z == '885827936452':
         n_name = nick_name.ID6
-    elif z == '32':
+    elif Z == '32':
         n_name = nick_name.ID7
-    elif z == '98':
+    elif Z == '98':
         n_name = nick_name.ID8
     return n_name
