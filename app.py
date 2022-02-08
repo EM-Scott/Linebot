@@ -95,7 +95,8 @@ def handle_message(event):
             line_bot_api.push_message(uid, TextSendMessage(user_name + '您好'))
     elif re.match("你過來一下", msg):
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='@Viktoria' + '就速擬')
-        
+            
+                                       
             
 #處理貼圖訊息
 @handler.add(MessageEvent, message=StickerMessage)
@@ -116,12 +117,10 @@ def handle_leave(event):
 def handle_join(event):
     newcoming_text = "謝謝邀請我這個機器來至此群組！！我會盡力為大家服務的～"
 
-    line_bot_api.reply_message(
-            event.reply_token,
-            TextMessage(text=newcoming_text)
-        )
+    line_bot_api.reply_message(event.reply_token,TextMessage(text=newcoming_text))
     print("JoinEvent =", JoinEvent)
-
+          
+          
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
