@@ -93,8 +93,7 @@ def handle_message(event):
             #print(group_f)
             #print(group_u)
             line_bot_api.push_message(uid, TextSendMessage(user_name + '您好'))
-    elif re.match("你過來一下", msg):
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='@Viktoria' + '就速擬')
+
             
                                        
             
