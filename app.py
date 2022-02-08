@@ -59,7 +59,7 @@ def handle_message(event):
 #   group_f = gprofile.group_id
 #   group_u = gprofile.user_id
 #   member_ids_res = line_bot_api.get_group_member_ids(<group_id>)
-    print('捕捉到事件：', event)
+#    print('捕捉到事件：', event)
     
     
 #================================ 
