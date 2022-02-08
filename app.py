@@ -67,22 +67,18 @@ def handle_message(event):
             print(uid,user_name)
         return 0
     elif re.match("守望兌換:[A-Z]", msg):
-        if uid == 'U13827e14d459bb54ca2e0357703e920e' or 'U06e24ea18e919e92af56dcdd8eec0565':
-            GRCodes = msg[5:].split(",")
-            UsersID = ['32','98']
-            guard_name = ['《兌換結果》']
-            
-            for i in UsersID:
-                guard_name.append(check_name(i))
-                for j in GRCodes:
-                    guard_name.append(guard(i,j))
-            
-            line_bot_api.push_message(uid, TextSendMessage("\n".join(guard_name) + "\n")
-                                      
+        if uid == 'U13827e14d459bb54ca2e0357703e920e':
+        GRCodes = msg[5:]
+        print(GRCodes)
+        UsersID = ['89765498736423','321231321']
+        for i in UsersID:
+            for j in GRCodes:
+                guard_name = guard(i,j)
+                line_bot_api.push_message(uid, TextSendMessage(guard_name))
         else:
             line_bot_api.push_message(uid, TextSendMessage(user_name + '無使用權限'))
-            print(uid,user_name)
-        return 0
+            print(uid)
+            print(user_name)
                                       
 
 #處理貼圖訊息
