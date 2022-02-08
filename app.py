@@ -97,7 +97,7 @@ def handle_message(event):
                                            QuickReplyButton(action=MessageAction(label="label", text="text"))
                                        ]))
         line_bot_api.push_message(uid, TextSendMessage(quick_reply))
-    elif re.match("calc:"[0-9], msg):
+    elif re.match("calc:[0-9]", msg):
         val = msg[5:].split(",")
         val_name = calc(val)
         line_bot_api.push_message(uid, TextSendMessage('平均單價為：' + val_name))
