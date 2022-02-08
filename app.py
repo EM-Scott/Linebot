@@ -76,7 +76,7 @@ def handle_message(event):
             UsersID = ['32','98']
             guard_name = ['《兌換結果》']
             for i in UsersID:
-                guard_name.append(check_name(i))
+                guard_name.append("\n" + check_name(i))
                 for j in GRCodes:
                     guard_name.append(guard(i,j))
             line_bot_api.push_message(uid, TextSendMessage("\n".join(guard_name) + "\n" ))
