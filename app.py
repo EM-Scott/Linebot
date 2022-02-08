@@ -79,7 +79,7 @@ def handle_message(event):
                 guard_name.append(check_name(i))
                 for j in GRCodes:
                     guard_name.append(guard(i,j))
-                line_bot_api.push_message(uid, TextSendMessage("\n".join(guard_name))
+                line_bot_api.push_message(uid, TextSendMessage(guard_name))
         else:
             line_bot_api.push_message(uid, TextSendMessage(user_name + '無使用權限'))
             print(uid)
