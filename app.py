@@ -9,7 +9,8 @@ from linebot.models import (
     StickerMessage, StickerSendMessage,
     ConfirmTemplate, TemplateSendMessage,
     MessageAction, URIAction, LocationMessage,
-    ButtonsTemplate
+    ButtonsTemplate, UnfollowEvent,
+    FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
 )
 import taiwanlottery
 from Guardiantales import guard
@@ -103,6 +104,21 @@ def handle_sticker_message(event):
             package_id=event.message.package_id,
             sticker_id=event.message.sticker_id)
     )
+    
+@handler.add(LeaveEvent)
+def handle_leave(event):
+    print("leave Event =", event)
+    print("我被踢掉了QQ 相關資訊", event.source)
+
+@handler.add(JoinEvent)
+def handle_join(event):
+    newcoming_text = "謝謝邀請我這個機器來至此群組！！我會盡力為大家服務的～"
+
+    line_bot_api.reply_message(
+            event.reply_token,
+            TextMessage(text=newcoming_text)
+        )
+    print("JoinEvent =", JoinEvent)
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
