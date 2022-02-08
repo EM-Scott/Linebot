@@ -53,13 +53,10 @@ def handle_message(event):
     profile = line_bot_api.get_profile(event.source.user_id)
     user_name = profile.display_name #使用者名稱
     uid = profile.user_id # 發訊者ID
-    summary = line_bot_api.get_group_summary(group_id)
-    group_id = summary.group_id
-    group_name = summary.group_name
-    group_url = summary.picture_url
     gprofile = line_bot_api.get_group_member_profile(group_id, user_id)
     group_f = gprofile.group_id
     group_u = gprofile.user_id
+    member_ids_res = line_bot_api.get_group_member_ids(<group_id>)
     
     
 #================================ 
@@ -90,12 +87,9 @@ def handle_message(event):
             line_bot_api.push_message(uid, TextSendMessage(user_name + '無使用權限'))
             print(uid + user_name)
     elif re.match("群組資訊", msg):
-            print(group_id)
-            print(group_name)
-            print(picture_url)
-            print(display_name)
-            print(user_id)
-            print(picture_url)
+            print(member_ids_res)
+            print(group_f)
+            print(group_u)
             line_bot_api.push_message(uid, TextSendMessage(user_name + '您好'))
         
             
