@@ -53,7 +53,7 @@ def handle_message(event):
     profile = line_bot_api.get_profile(event.source.user_id)
     user_name = profile.display_name #使用者名稱
     uid = profile.user_id # 發訊者ID
-    gprofile = line_bot_api.get_group_member_profile(group_id, user_id)
+    gprofile = line_bot_api.get_group_member_profile(event.source.group_id, event.source.user_id)
     group_f = gprofile.group_id
     group_u = gprofile.user_id
     #member_ids_res = line_bot_api.get_group_member_ids(<group_id>)
