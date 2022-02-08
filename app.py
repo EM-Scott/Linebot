@@ -10,7 +10,7 @@ from linebot.models import (
     ConfirmTemplate, TemplateSendMessage,
     MessageAction, URIAction, LocationMessage,
     ButtonsTemplate, UnfollowEvent,
-    FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
+    FollowEvent, JoinEvent, LeaveEvent, BeaconEvent, QuickReplyButton
 )
 import taiwanlottery
 from Guardiantales import guard
