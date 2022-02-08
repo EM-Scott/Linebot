@@ -10,7 +10,7 @@ from linebot.models import (
     ConfirmTemplate, TemplateSendMessage,
     MessageAction, URIAction, LocationMessage,
     ButtonsTemplate, UnfollowEvent,
-    FollowEvent, JoinEvent, LeaveEvent, BeaconEvent, QuickReplyButton
+    FollowEvent, JoinEvent, LeaveEvent, BeaconEvent, QuickReplyButton,QuickReply
 )
 import taiwanlottery
 from Guardiantales import guard
@@ -97,7 +97,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
-                text='Quick reply',
+                msg='Quick reply',
                 quick_reply=QuickReply(
                     items=[
                         QuickReplyButton(
