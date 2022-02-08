@@ -15,6 +15,7 @@ from linebot.models import (
 import taiwanlottery
 from Guardiantales import guard
 from Guardiantales import check_name
+form CP import calc
 import os
 import re
 import requests
@@ -75,7 +76,7 @@ def handle_message(event):
             print(uid + user_name)
         return 0
     elif re.match("守望兌換:[A-Z]", msg):
-        if uid == 'U13827e14d459bb54ca2e0357703e920e':
+        if uid == 'U13827e14d459bb54ca2e0357703e920e' or 'U06e24ea18e919e92af56dcdd8eec0565':
             GRCodes = msg[5:].split(",")
             print(GRCodes)
             UsersID = ['32','98']
@@ -89,9 +90,6 @@ def handle_message(event):
             line_bot_api.push_message(uid, TextSendMessage(user_name + '無使用權限'))
             print(uid + user_name)
     elif re.match("群組資訊", msg):
-            #print(member_ids_res)
-            #print(group_f)
-            #print(group_u)
             line_bot_api.push_message(uid, TextSendMessage(user_name + '您好'))
     elif re.match('quick_reply', msg):
         quick_reply = TextSendMessage(text='Hello, world',
@@ -99,8 +97,11 @@ def handle_message(event):
                                            QuickReplyButton(action=MessageAction(label="label", text="text"))
                                        ]))
         line_bot_api.push_message(uid, TextSendMessage(quick_reply))
+    elif re.match("calc:"[0-9], msg):
+        val = msg[5:].split(",")
+        val_name = calc(val)
+        line_bot_api.push_message(uid, TextSendMessage('平均單價為：' + val_name))
 
-            
                                        
             
 #處理貼圖訊息
