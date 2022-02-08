@@ -73,7 +73,7 @@ def handle_message(event):
         if uid == 'U13827e14d459bb54ca2e0357703e920e':
             GRCodes = msg[5:].split(",")
             print(GRCodes)
-            UsersID = ['89765498736423','321231321']
+            UsersID = ['32','98']
             guard_name = ['《兌換結果》']
             for i in UsersID:
                 guard_name.append(check_name(i))
