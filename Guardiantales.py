@@ -35,7 +35,7 @@ def check_name(Z):
     class nick_name:#識別使用者ID
         ID1 = '考特：'
         ID2 = '球球：'
-        ID3 = '軒軒：'
+        ID3 = '曲東賢：'
         ID4 = 'kawakil：'
         ID5 = 'Yun：'
         ID6 = '測試帳號：'
