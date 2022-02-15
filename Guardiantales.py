@@ -58,4 +58,6 @@ def check_name(Z):
         n_name = nick_name.ID7
     elif Z == '98':
         n_name = nick_name.ID8
+    else :
+        n_name = Z
     return n_name
