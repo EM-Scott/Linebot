@@ -42,7 +42,7 @@ def check_name(Z):
         ID7 = '我測試一下：'
         ID8 = '巴拉巴拉霸：'
 
-    if Z == '885827936452':
+    if Z == '825722946229':
         n_name = nick_name.ID1
     elif Z == '733122961641':
         n_name = nick_name.ID2
