@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 def guard(A,B):
-    url = 'https://www.guardiantales.com/coupon/redeem/'
+    url = 'https://www.guardiantales.com/coupon/'
     payload=('region=SEA&' + 'userId=' + A +'&code=' + B )
     headers = {
         'content-type': "application/x-www-form-urlencoded",
