@@ -61,3 +61,37 @@ def check_name(Z):
     else :
         n_name = Z
     return n_name
+UsersID = [
+    {'SSID':'778855465221', 'nickname':'使用者一號'},
+    {'SSID':'98765424213543', 'nickname':'使用者二號'}
+]
+
+Statereport = {
+    "Congratulations!You've successfully claimed the Coupon!Please check your mail in-game in order to redeem your rewards." : '成功。序號:', 
+    "We were unable to find your User Number.Please double-check your User Number and the Region selected and try again." : '失敗。(UserAD Error)序號:', 
+    "The Coupon Code you've entered is invalid.Please check the Coupon Code and try again." : '失敗。(序號錯誤)序號:',
+    "The Coupon Code you've entered has already been claimed.If you have not yet redeemed this Coupon Code, please double-check your User Number and the Region selected and try again." : '失敗。(序號已兌換)序號:',
+    "The Coupon Code you've entered has already expired." : '失敗。(序號過期)序號:',
+}
+
+result=['《兌換結果》']
+
+def guard(A,B):
+    url = 'https://www.guardiantales.com/coupon/redeem'
+    payload=('region=SEA&' + 'userId=' + A +'&code=' + B )
+    headers = {
+        'content-type': "application/x-www-form-urlencoded",
+    }
+    response = requests.request("POST", url, data=payload, headers=headers) # 送出資訊
+    soup = BeautifulSoup(response.text,"html.parser")
+    sel = soup.find('p').text #抓回顯示值
+    return Statereport[sel]
+
+for i in UsersID:
+    a = i['SSID']
+    result.append("\n" + i['nickname'])
+    for j in GRCodes:
+        result.append("\n" + guard(a,j))
+        print(a + j)
+
+print(result)
